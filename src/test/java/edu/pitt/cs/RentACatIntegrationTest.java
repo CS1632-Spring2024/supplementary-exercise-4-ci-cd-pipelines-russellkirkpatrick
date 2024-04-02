@@ -259,7 +259,7 @@ public class RentACatIntegrationTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		r.rentCat(2);
+		c2.rentCat();
 		boolean test = r.rentCat(2);
 		
 		assertEquals(false,test);
