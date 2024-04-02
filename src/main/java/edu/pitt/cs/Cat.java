@@ -17,6 +17,7 @@ public interface Cat {
 				Mockito.when(cat.getId()).thenReturn(id);
 				Mockito.when(cat.getName()).thenReturn(name);
 				Mockito.when(cat.toString()).thenReturn("ID " + id + ". " + name);
+				//Mockito.when(cat.getRented()).thenReturn(true);
 				return cat;
 			default:
 				assert(false);
