@@ -1,14 +1,13 @@
 package edu.pitt.cs;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.FixMethodOrder;
-import org.junit.runners.MethodSorters;
 import static org.junit.Assert.*;
 
-import org.mockito.Mockito;
-import static org.mockito.Mockito.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
+import org.mockito.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CatUnitTest {
@@ -32,6 +31,7 @@ public class CatUnitTest {
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
 		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
 		// TODO: Fill in
+        c = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
 	}
 
 	@After
@@ -53,6 +53,10 @@ public class CatUnitTest {
 	@Test
 	public void testGetId() {
 		// TODO: Fill in
+		c = new CatImpl(1,"Jennyanydots");
+		int catid = c.getId();
+		assertEquals(catid,1);
+
 	}
 
 	/**
@@ -61,12 +65,15 @@ public class CatUnitTest {
 	 * <pre>
 	 * Preconditions: c has been created with ID 1, and name "Jennyanydots".
 	 * Execution steps: Call c.getName().
-	 * Postconditions: Return value is "Jennyanydots".
+	 * Postconditions: Return value is 1.
 	 * </pre>
 	 */
 	@Test
 	public void testGetName() {
 		// TODO: Fill in
+		c = new CatImpl(1,"Jennyanydots");
+		String catName = c.getName();
+		assertEquals(catName,"Jennyanydots");
 	}
 
 	/**
@@ -81,6 +88,9 @@ public class CatUnitTest {
 	@Test
 	public void testGetRented() {
 		// TODO: Fill in
+		c = new CatImpl(1,"Jennyanydots");
+		boolean rented = c.getRented();
+		assertEquals(rented,false);
 	}
 
 	/**
@@ -95,6 +105,9 @@ public class CatUnitTest {
 	@Test
 	public void testToString() {
 		// TODO: Fill in
+		c = new CatImpl(1,"Jennyanydots");
+		String string = c.toString();
+		assertEquals("ID 1. Jennyanydots", string);
 	}
 
 	/**
@@ -110,6 +123,11 @@ public class CatUnitTest {
 	@Test
 	public void testRentCat() {
 		// TODO: Fill in
+		c = new CatImpl(1,"Jennyanydots");
+		c.rentCat();
+		boolean rented = c.getRented();
+		assertEquals(rented,true);
+		
 	}
 
 	/**
@@ -126,6 +144,9 @@ public class CatUnitTest {
 	@Test
 	public void testReturnCat() {
 		// TODO: Fill in
+		c.returnCat();
+		boolean rented = c.getRented();
+		assertEquals(rented,false);
 	}
 
 	/**
@@ -141,6 +162,12 @@ public class CatUnitTest {
 	@Test
 	public void testRenameCat() {
 		// TODO: Fill in
+		c = new CatImpl(1,"Jennyanydots");
+		c.renameCat("Garfield");
+		String str = c.toString();
+		String renamed = c.getName();
+		assertEquals(str,"ID 1. Garfield");
+		assertEquals(renamed,"Garfield");
 	}
 
 }
