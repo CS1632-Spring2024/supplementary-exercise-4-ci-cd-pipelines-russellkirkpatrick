@@ -31,7 +31,7 @@ public class RentACatIntegrationTest {
 	Cat c2; // Second cat object
 	Cat c3; // Third cat object
 
-	ByteArrayOutputStream out; // Output stream for testing system output
+	ByteArrayOutputStream out = new ByteArrayOutputStream(); // Output stream for testing system output
 	PrintStream stdout; // Print stream to hold the original stdout stream
 	String newline = System.lineSeparator(); // Platform independent newline ("\n" or "\r\n") for use in assertEquals
 
@@ -66,7 +66,7 @@ public class RentACatIntegrationTest {
 		stdout = System.out;
 		// Second, update System.out to the PrintStream created from "out"
 		// TODO: Fill in.  Refer to the textbook chapter 14.6 on Testing System Output.
-		//System.setOut(new PrintStream(out));
+		System.setOut(new PrintStream(out));
 	}
 
 	@After
@@ -100,16 +100,17 @@ public class RentACatIntegrationTest {
 	@Test
 	public void testGetCatNullNumCats0() {
 		// TODO: Fill in
-		// try{
-		// 	Method method = r.getClass().getDeclaredMethod("getCat", int.class);
-		// 	method.setAccessible(true);
-		// 	Object invoked = method.invoke(r,2);
-		// 	Cat kitty = (Cat) invoked;
-		// 	assertEquals(null, kitty);
-		// }
-		// catch(Exception e){
-		// 	System.err.println("Failure!");
-		// }
+		try{
+			Method method = r.getClass().getDeclaredMethod("getCat", int.class);
+			method.setAccessible(true);
+			Object invoked = method.invoke(r,2);
+			Cat kitty = (Cat) invoked;
+			assertEquals(null, kitty);
+			assertEquals(out.toString(),"Invalid cat ID." + newline);
+		}
+		catch(Exception e){
+			System.err.println("Failure!");
+		}
 	}
 
 	/**
@@ -130,19 +131,20 @@ public class RentACatIntegrationTest {
 	@Test
 	public void testGetCatNumCats3() {
 		// TODO: Fill in
-		// r.addCat(c1);
-		// r.addCat(c2);
-		// r.addCat(c3);
-		// try{
-		// 	Method method = r.getClass().getDeclaredMethod("getCat", int.class);
-		// 	method.setAccessible(true);
-		// 	Object invoked = method.invoke(r,2);
-		// 	Cat kitty = (Cat) invoked;
-		// 	assertNotEquals(null, kitty);
-		// }
-		// catch(Exception e){
-		// 	System.err.println("Failure!");
-		// }
+		r.addCat(c1);
+		r.addCat(c2);
+		r.addCat(c3);
+		try{
+			Method method = r.getClass().getDeclaredMethod("getCat", int.class);
+			method.setAccessible(true);
+			Object invoked = method.invoke(r,2);
+			Cat kitty = (Cat) invoked;
+			assertNotEquals(null, kitty);
+			assertEquals(2,kitty.getId());
+		}
+		catch(Exception e){
+			System.err.println("Failure!");
+		}
 	}
 
 	/**
@@ -197,6 +199,7 @@ public class RentACatIntegrationTest {
 		boolean test = r.renameCat(2, "Garfield");
 		assertEquals(false, test);
 		assertNotEquals("Garfield", c2.getName());
+		assertEquals(out.toString(),"Invalid cat ID." + newline);
 	}
 
 	/**
@@ -239,6 +242,7 @@ public class RentACatIntegrationTest {
 		boolean test = r.rentCat(2);
 		assertEquals(true,test);
 		assertEquals(true, c2.getRented());
+		assertEquals(out.toString(),"Old Deuteronomy has been rented." + newline);
 	}
 
 	/**
@@ -259,11 +263,13 @@ public class RentACatIntegrationTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		c2.rentCat();
+		r.rentCat(2);
+		assertEquals(out.toString(),"Old Deuteronomy has been rented." + newline);
 		boolean test = r.rentCat(2);
 		
 		assertEquals(false,test);
 		assertEquals(true, c2.getRented());
+		assertEquals(out.toString(),"Old Deuteronomy has been rented." + newline+"Sorry, Old Deuteronomy is not here!" + newline);
 	}
 
 	/**
@@ -289,6 +295,7 @@ public class RentACatIntegrationTest {
 		
 		assertEquals(true,test);
 		assertEquals(false, c2.getRented()); 
+		assertEquals(out.toString(),"Old Deuteronomy has been rented." + newline+"Welcome back, Old Deuteronomy!" + newline);
 	}
 
 	/**
@@ -312,6 +319,8 @@ public class RentACatIntegrationTest {
 		
 		assertEquals(false,test);
 		assertEquals(false, c2.getRented());
+		assertEquals(out.toString(),"Old Deuteronomy is already here!" + newline);
+
 	}
 
 }

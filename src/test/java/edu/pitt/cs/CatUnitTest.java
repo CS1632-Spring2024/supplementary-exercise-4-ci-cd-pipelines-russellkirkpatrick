@@ -53,7 +53,7 @@ public class CatUnitTest {
 	@Test
 	public void testGetId() {
 		// TODO: Fill in
-		c = new CatImpl(1,"Jennyanydots");
+		//c = new CatImpl(1,"Jennyanydots");
 		int catid = c.getId();
 		assertEquals(catid,1);
 
@@ -71,7 +71,7 @@ public class CatUnitTest {
 	@Test
 	public void testGetName() {
 		// TODO: Fill in
-		c = new CatImpl(1,"Jennyanydots");
+		//c = new CatImpl(1,"Jennyanydots");
 		String catName = c.getName();
 		assertEquals(catName,"Jennyanydots");
 	}
@@ -88,7 +88,7 @@ public class CatUnitTest {
 	@Test
 	public void testGetRented() {
 		// TODO: Fill in
-		c = new CatImpl(1,"Jennyanydots");
+		//c = new CatImpl(1,"Jennyanydots");
 		boolean rented = c.getRented();
 		assertEquals(rented,false);
 	}
@@ -105,7 +105,7 @@ public class CatUnitTest {
 	@Test
 	public void testToString() {
 		// TODO: Fill in
-		c = new CatImpl(1,"Jennyanydots");
+		//c = new CatImpl(1,"Jennyanydots");
 		String string = c.toString();
 		assertEquals("ID 1. Jennyanydots", string);
 	}
@@ -123,10 +123,10 @@ public class CatUnitTest {
 	@Test
 	public void testRentCat() {
 		// TODO: Fill in
-		c = new CatImpl(1,"Jennyanydots");
+		//c = new CatImpl(1,"Jennyanydots");
 		c.rentCat();
 		boolean rented = c.getRented();
-		assertEquals(rented,true);
+		assertTrue(rented);
 		
 	}
 
@@ -162,7 +162,7 @@ public class CatUnitTest {
 	@Test
 	public void testRenameCat() {
 		// TODO: Fill in
-		c = new CatImpl(1,"Jennyanydots");
+		//c = new CatImpl(1,"Jennyanydots");
 		c.renameCat("Garfield");
 		String str = c.toString();
 		String renamed = c.getName();

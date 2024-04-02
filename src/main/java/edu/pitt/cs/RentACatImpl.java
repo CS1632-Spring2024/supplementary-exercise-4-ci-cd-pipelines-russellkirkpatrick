@@ -100,8 +100,9 @@ public class RentACatImpl implements RentACat {
 
 	private Cat getCat(int id) {
 
-		// null check
+		//null check
 		if (cats == null) {
+			System.out.println("Invalid cat ID.");
 			return null;
 		}
 
