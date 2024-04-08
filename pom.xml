@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.wonsunahn</groupId>
-  <artifactId>cs1632-cicd-pipelines-rlk</artifactId>
+  <artifactId>cs1632-cicd-pipelines-rlk70</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
@@ -37,9 +37,9 @@
 
   <distributionManagement>
     <repository>
-      <id>github</id>
+      <id>russellkirkpatrick</id>
       <name>GitHub Apache Maven Packages</name>
-      <url>https://github.com/CS1632-Spring2024/supplementary-exercise-4-ci-cd-pipelines-russellkirkpatrick</url>
+      <url>https://maven.pkg.github.com/CS1632-Spring2024/supplementary-exercise-4-ci-cd-pipelines-wonsunahn</url>
     </repository>
   </distributionManagement>
 
