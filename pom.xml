@@ -37,9 +37,9 @@
 
   <distributionManagement>
     <repository>
-      <id>russellkirkpatrick</id>
+      <id>github</id>
       <name>GitHub Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/CS1632-Spring2024/supplementary-exercise-4-ci-cd-pipelines-wonsunahn</url>
+      <url>https://maven.pkg.github.com/CS1632-Spring2024/supplementary-exercise-4-ci-cd-pipelines-russellkirkpatrick</url>
     </repository>
   </distributionManagement>
 
